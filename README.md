@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Novel Writing and Character Building Tool Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Project Proposal**
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+A tool for fleshing out original fiction characters or outlines for a novel. There are numerous character and novel worksheets for outlining characters and stories, but often not every question or item in a worksheet will apply to a given story or character. For some writer's it's rather annoying to have to print out, edit pdf questionaires, and/or keep track of outlines and character profiles. The goal of this project is to provide a useful answer to these problems, and way for writers to explore their ideas.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+React, Node JS, PostgreSQL, with focus slanted toward front-end, but definitely a full-stack application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Data
 
-### `npm test`
+Multiple prebuilt APIs may be used for this app - certain data such as the questionaire data will likely need to be built into an API of my own making.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Data for questionaires will be sourced from the [Proust](https://web.archive.org/web/20121225100330/http://www.chick.net/proust/question.html), [Bernard Pivot, and James Lipton questionaires](https://www.deschuteslibrary.org/files/uploads/Bernard%20Pivot%20and%20James%20Lipton%20Questionnaires.pdf), as well as a character analysis sheet from a site called [MousePawMedia](https://mousepawmedia.com/downloads/writing/CharacterAnalysis.pdf).
 
-### `npm run build`
+Example story structure for limited help with outlines could use a structure like [The Hero's Journey](https://en.wikipedia.org/wiki/Hero%27s_journey) templates.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Name generation could be handled by something such as [this API](https://fungenerators.com/api/namegen/), or I could build one in with popular names from US census data.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Writing prompts could also be included at some point, [by an already made API](https://generatorfun.com/writing-prompt-api) or via web scraping.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Google or YouTube search API could be utilized for finding other writing resources not supplied in the other options.
 
-### `npm run eject`
+## Demographic
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Fiction writers of almost any genre or medium.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Tenative Schema
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![jpg of schema](public/diagrams/NovelCharacterTool.jpg)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Possible Issues
 
-## Learn More
+Not enough variety in names generated.
+Allowing for picking/choosing of individual questions/answers to fill out and add to a profile could get messy. Some data, if I end up using a web scraper could also be messy to clean up, and with writing prompts especially there are copyright considerations.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Sensitive Info
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Passwords will need to be secured with Bcrypt. User's novel outlines/characters profiles should only be accessible by the user who created it.
 
-### Code Splitting
+## Functionality
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Functions to help build character profiles and notes
 
-### Analyzing the Bundle Size
+- Functions to help build novel outlines, synopses, notes and ability to associate them with characters. Characters do not have to be associated with a novel at all, but can also be associated with multiple novels.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Function to search novels and characters the user has created.
 
-### Making a Progressive Web App
+- Responses to writing prompts if implemented will not be kept in app's database - no full blown writing will be done in the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Easy access to writing resources, and a way to search for writing resources elsewhere.
 
-### Advanced Configuration
+## User Flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![jpg of user flow](public/diagrams/user-flow-writing-app.jpg)
 
-### Deployment
+## Stretch/Long Term Goals for additional features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+I want to continue to build on this tool and add more creative functionality, such as:
 
-### `npm run build` fails to minify
+- Personality tests for characters. Out of the box, personality test related APIs are pricy, but I did find [this guide](https://www.riddle.com/blog/enneagram-test-create-your-own/) which could be used to come up with something even less exact, but similiar.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Random writing prompt generator
+
+- Ability to create multiple iterations of the same character or novel outline, without losing the current iteration.
+
+- In light of some comments from my cohort, it could be useful to add a functionality where teachers can see/comment on their students' story outlines / character profiles.
