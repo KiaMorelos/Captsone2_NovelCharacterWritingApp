@@ -2,7 +2,7 @@
 
 - For character name generation: https://fakerjs.dev/
 - For writing video content: https://developers.google.com/youtube/v3
-- Homemade Character Questionaires API (in development) which will contain questionaire data from the following resources: [Proust](https://web.archive.org/web/20121225100330/http://www.chick.net/proust/question.html), [Bernard Pivot, and James Lipton questionaires](https://www.deschuteslibrary.org/files/uploads/Bernard%20Pivot%20and%20James%20Lipton%20Questionnaires.pdf), as well as a character analysis sheet from a site called [MousePawMedia](https://mousepawmedia.com/downloads/writing/CharacterAnalysis.pdf).
+- Homemade Character Questionaires API (in development, [see separate repo](https://github.com/KiaMorelos/Backend-NovelCharacterWritingApp)) which will contain questionaire data from the following resources: [Proust](https://web.archive.org/web/20121225100330/http://www.chick.net/proust/question.html), [Bernard Pivot, and James Lipton questionaires](https://www.deschuteslibrary.org/files/uploads/Bernard%20Pivot%20and%20James%20Lipton%20Questionnaires.pdf), as well as a character analysis sheet from a site called [MousePawMedia](https://mousepawmedia.com/downloads/writing/CharacterAnalysis.pdf).
 
 # Schema
 
