@@ -10,6 +10,8 @@ More may be added to this schema later - see proposal - for now I am starting wi
 
 ![jpg of schema](public/diagrams/CharacterSchema.jpg)
 
+- This line is being added and removed to test the repository is connected and working I ran silly experiment.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
