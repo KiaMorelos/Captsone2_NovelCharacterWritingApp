@@ -10,10 +10,15 @@ const API_CLIENT = axios.create({
 });
 
 async function genFirstNames(gender) {
-  const result = await API_CLIENT.get(`babynames`, {
-    params: { gender },
-  });
-  return result.data;
+  try {
+    const result = await API_CLIENT.get(`babynames`, {
+      params: { gender },
+    });
+    return result.data;
+  } catch (err) {
+    console.error("BABY NAME API Error:", err.response.data.error);
+    return err.response.data.error;
+  }
 }
 
 export { genFirstNames };
