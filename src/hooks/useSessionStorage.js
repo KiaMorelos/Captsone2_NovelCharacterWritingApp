@@ -6,7 +6,7 @@ function useSessionStorage(keyName, defaultVal = null) {
   const [item, setItem] = useState(store);
 
   useEffect(
-    function setItemLocalStorage() {
+    function setItemSessionStorage() {
       if (!item) {
         sessionStorage.removeItem(keyName);
       } else {
