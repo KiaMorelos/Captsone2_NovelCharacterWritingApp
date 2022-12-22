@@ -25,13 +25,16 @@ function NewCharacterForm() {
       if (formData.name === "m") {
         const res = await generateName("boy");
         formData.name = res;
-      } else if (formData.name === "f") {
+      }
+      if (formData.name === "f") {
         const res = await generateName("girl");
         formData.name = res;
-      } else if (formData.name === "n") {
+      }
+      if (formData.name === "n") {
         const res = await generateName("neutral");
         formData.name = res;
-      } else {
+      }
+      if (!formData.name) {
         const res = await generateName();
         formData.name = res;
       }
