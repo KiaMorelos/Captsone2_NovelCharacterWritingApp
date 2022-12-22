@@ -34,6 +34,11 @@ class WritingAPI {
     return res.user;
   }
 
+  static async updateUser(id, data) {
+    const res = await this.request(`users/${id}`, data, "patch");
+    return res.user;
+  }
+
   static async getAllQuestions(data) {
     const res = await this.request(`questions`, data);
     return res.questions;
@@ -51,6 +56,11 @@ class WritingAPI {
 
   static async getCharacter(id) {
     const res = await this.request(`characters/${id}`);
+    return res.character;
+  }
+
+  static async newCharacter(data) {
+    const res = await this.request(`characters`, data, "post");
     return res.character;
   }
 }

@@ -12,6 +12,9 @@ function NavBar({ logout }) {
       {activeUser ? (
         <>
           <NavLink to="/characters">Characters</NavLink>
+          <NavLink to="/questionaires">
+            Character Analysis Questionaires
+          </NavLink>
           <NavLink to="/new-character">New Character</NavLink>
           <NavLink to="/profile">My Profile</NavLink>
           <NavLink to="/" onClick={logout}>

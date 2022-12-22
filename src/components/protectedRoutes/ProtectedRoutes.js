@@ -4,7 +4,7 @@ import AuthContext from "../context/AuthContext";
 
 const ProtectedRoutes = () => {
   const { activeUser } = useContext(AuthContext);
-  const hasToken = sessionStorage.getItem("token");
+  const hasToken = localStorage.getItem("token");
   return activeUser || hasToken ? <Outlet /> : <Navigate to="/login" />;
 };
 

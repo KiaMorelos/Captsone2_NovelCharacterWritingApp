@@ -4,14 +4,15 @@ import { decodeToken } from "react-jwt";
 import { WritingAPI } from "./api/writingApi";
 import "./App.css";
 import AuthContext from "./components/context/AuthContext";
-import useSessionStorage from "./hooks/useSessionStorage";
+import useLocalStorage from "./hooks/useLocalStorage";
 import NavBar from "./components/navbar/NavBar";
 import AppRoutes from "./routes/AppRoutes";
 import Loading from "./components/loading/Loading";
 
 function App() {
-  const [token, setToken] = useSessionStorage("token");
+  const [token, setToken] = useLocalStorage("token");
   const [activeUser, setActiveUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function signup(data) {
     try {
@@ -43,10 +44,12 @@ function App() {
     async function getActiveUser() {
       if (token) {
         try {
+          setLoading(true);
           const { userId } = decodeToken(token);
           WritingAPI.authToken = token;
           const res = await WritingAPI.getUser(userId);
-          setActiveUser(res);
+          setActiveUser({ userId, ...res });
+          setLoading(false);
         } catch (err) {
           setActiveUser(null);
           return { message: "unauthorized" };
@@ -55,7 +58,7 @@ function App() {
     }
     getActiveUser();
   }, [token]);
-
+  if (loading) return <Loading />;
   return (
     <AuthContext.Provider value={{ activeUser }}>
       <div className="App">

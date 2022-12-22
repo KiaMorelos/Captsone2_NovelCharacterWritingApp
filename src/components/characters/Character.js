@@ -25,7 +25,7 @@ function Character() {
         <img src={characterPhotoUrl} alt="" />
       ) : (
         <img
-          src={`https://robohash.org/${id}.png?set=set5&size=100x100`}
+          src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=100`}
           alt=""
         />
       )}
