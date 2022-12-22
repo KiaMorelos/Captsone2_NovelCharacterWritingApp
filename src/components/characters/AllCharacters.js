@@ -7,6 +7,11 @@ import CharacterListItem from "./CharacterListItem";
 function AllCharacters() {
   const [characters, setCharacters] = useState(null);
 
+  async function deleteCharacter(id) {
+    const response = await WritingAPI.deleteCharacter(id);
+    setCharacters(response);
+  }
+
   useEffect(() => {
     async function getCharacters() {
       const response = await WritingAPI.getAllCharacters();
@@ -26,6 +31,7 @@ function AllCharacters() {
             id={c.id}
             name={c.name}
             characterPhotoUrl={c.characterPhotoUrl}
+            deleteCharacter={deleteCharacter}
           />
         ))
       ) : (

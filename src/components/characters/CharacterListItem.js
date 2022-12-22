@@ -1,4 +1,4 @@
-function CharacterListItem({ id, name, characterPhotoUrl }) {
+function CharacterListItem({ id, name, characterPhotoUrl, deleteCharacter }) {
   return (
     <li id={id} key={id}>
       <a href={`characters/${id}`}>
@@ -12,6 +12,7 @@ function CharacterListItem({ id, name, characterPhotoUrl }) {
         )}
         {name}
       </a>
+      <button onClick={() => deleteCharacter(id)}>Delete</button>
     </li>
   );
 }

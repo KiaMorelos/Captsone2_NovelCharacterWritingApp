@@ -3,7 +3,7 @@ import { WritingAPI } from "../../api/writingApi";
 import { generateName } from "../../api/namesApi";
 import Loading from "../loading/Loading";
 
-function NewCharacterForm() {
+function CharacterForm({ whichAction, characterId, patchCharacter }) {
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -40,8 +40,15 @@ function NewCharacterForm() {
       }
 
       setLoading(true);
-      const res = await WritingAPI.newCharacter(formData);
-      setCharacter(res);
+
+      if (whichAction === "new") {
+        const res = await WritingAPI.newCharacter(formData);
+        setCharacter(res);
+      } else {
+        const res = await patchCharacter(characterId, formData);
+        setCharacter(res);
+      }
+
       setLoading(false);
       setFormData({
         name: "",
@@ -54,18 +61,19 @@ function NewCharacterForm() {
 
   return (
     <div>
-      <h1>New Character</h1>
+      <h1>{whichAction === "new" ? "New" : "Edit"} Character</h1>
       <p>
-        Don't know what to name your character yet? In the name field, type 'm'
-        for male name, 'f' for a female name, 'n' for a gender neutral name, or
+        Don't know what to name your character? In the name field, type 'm' for
+        male name, 'f' for a female name, 'n' for a gender neutral name, or
         leave blank and a random name will be generated for you.
       </p>
       {loading ? <Loading /> : null}
       {character ? (
         <p>
-          Successfuly created character: {character.name}. You can keep adding
-          characters by submitting the form, or go straight to viewing,
-          <a href={`characters/${character.id}`}>{character.name}</a>
+          Successfuly created character:
+          <a href={`characters/${character.id}`}>{character.name}</a>. You can
+          keep adding characters by submitting the form, or go straight to
+          viewing, <a href={`characters/${character.id}`}>{character.name}</a>
         </p>
       ) : null}
       <form onSubmit={handleSubmit}>
@@ -89,10 +97,14 @@ function NewCharacterForm() {
             value={formData.characterPhotoUrl}
           />
         </div>
-        <button>Create Character</button>
+        {whichAction === "new" ? (
+          <button>Create Character</button>
+        ) : (
+          <button>Save Edit</button>
+        )}
       </form>
     </div>
   );
 }
 
-export default NewCharacterForm;
+export default CharacterForm;

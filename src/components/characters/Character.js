@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { WritingAPI } from "../../api/writingApi";
 import AllAnswers from "../answers/AllAnswers";
 import Loading from "../loading/Loading";
+import CharacterForm from "./CharacterForm";
 
 function Character() {
+  const navigate = useNavigate();
   const [character, setCharacter] = useState(null);
+  const [editing, setEditing] = useState();
   const { id } = useParams();
+
+  async function deleteCharacter(id) {
+    await WritingAPI.deleteCharacter(id);
+    navigate("/characters");
+  }
+
+  async function patchCharacter(id, data) {
+    const res = await WritingAPI.patchCharacter(id, data);
+    setCharacter(res);
+    setEditing(false);
+  }
 
   useEffect(() => {
     async function getCharacter() {
@@ -15,7 +29,7 @@ function Character() {
       setCharacter(response);
     }
     getCharacter();
-  }, [id]);
+  }, [id, character]);
 
   if (!character) return <Loading />;
   const { name, characterPhotoUrl, Answers } = character;
@@ -30,7 +44,26 @@ function Character() {
         />
       )}
       <h1>{name}</h1>
-      <AllAnswers Answers={Answers} />
+
+      <button onClick={() => setEditing(true)}>
+        Edit Character Name / Image
+      </button>
+      <button onClick={() => deleteCharacter(id)}>Delete character</button>
+      {editing ? (
+        <CharacterForm
+          whichAction={"edit"}
+          characterId={id}
+          patchCharacter={patchCharacter}
+        />
+      ) : null}
+      {Answers.length ? (
+        <AllAnswers Answers={Answers} />
+      ) : (
+        <p>
+          You haven't added any questionaire answers for this character yet.
+          Create some.
+        </p>
+      )}
     </div>
   );
 }

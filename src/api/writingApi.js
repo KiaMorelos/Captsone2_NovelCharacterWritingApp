@@ -63,6 +63,18 @@ class WritingAPI {
     const res = await this.request(`characters`, data, "post");
     return res.character;
   }
+
+  static async patchCharacter(id, data) {
+    console.log(data);
+    const res = await this.request(`characters/${id}`, data, "patch");
+    return res.character;
+  }
+
+  static async deleteCharacter(id) {
+    await this.request(`characters/${id}`, {}, "delete");
+    const remaining = await this.request(`characters`);
+    return remaining.characters;
+  }
 }
 
 export { WritingAPI };
