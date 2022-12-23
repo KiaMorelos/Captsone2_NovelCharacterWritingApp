@@ -65,7 +65,6 @@ class WritingAPI {
   }
 
   static async patchCharacter(id, data) {
-    console.log(data);
     const res = await this.request(`characters/${id}`, data, "patch");
     return res.character;
   }
