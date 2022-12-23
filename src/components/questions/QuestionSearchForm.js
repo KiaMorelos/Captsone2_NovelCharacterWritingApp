@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 import { WritingAPI } from "../../api/writingApi";
+import { useLocation } from "react-router-dom";
 import Loading from "../loading/Loading";
+import Questions from "./Questions";
 
 function QuestionSearchForm() {
   const [questions, setQuestions] = useState([]);
-  const [questionaires, setQuestionaires] = useState();
-
+  const [questionaires, setQuestionaires] = useState([]);
+  const location = useLocation();
+  let from = null;
+  let characterId = null;
+  if (location.state) {
+    from = location.state.from;
+    characterId = location.state.characterId;
+  }
   async function searchQuestions(data = {}) {
     const response = await WritingAPI.getAllQuestions(data);
     setQuestions(response);
@@ -63,11 +71,15 @@ function QuestionSearchForm() {
 
   return (
     <div>
-      <h1>Search Questionaires and Questions</h1>
+      <h1>
+        Search Questionaires and Questions
+        {from ? ` to add to ${from}'s profile` : null}
+      </h1>
       <p>
-        Mouse Paw Media's questionaire encompasseds all available categories.
-        The other three are primarily psychological information, but also very
-        valuable places to start
+        Mouse Paw Media's questionaire encompasses all question available
+        categories currently available. The other three are primarily
+        psychological information questions, but also very valuable places to
+        start
       </p>
       <form onSubmit={handleSubmit}>
         <div>
@@ -101,9 +113,7 @@ function QuestionSearchForm() {
 
       <ul>
         {questions.length ? (
-          questions.map((question) => (
-            <li key={question.id}>{question.question}</li>
-          ))
+          <Questions questions={questions} characterId={characterId} />
         ) : (
           <li key="no-questions">No results</li>
         )}

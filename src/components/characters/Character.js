@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 import { WritingAPI } from "../../api/writingApi";
 import AllAnswers from "../answers/AllAnswers";
@@ -9,7 +9,7 @@ import CharacterForm from "./CharacterForm";
 function Character() {
   const navigate = useNavigate();
   const [character, setCharacter] = useState(null);
-  const [editing, setEditing] = useState();
+  const [editing, setEditing] = useState(false);
   const { id } = useParams();
 
   async function deleteCharacter(id) {
@@ -17,9 +17,10 @@ function Character() {
     navigate("/characters");
   }
 
-  async function patchCharacter(id, data) {
-    const res = await WritingAPI.patchCharacter(id, data);
-    setCharacter(res);
+  async function patchC(id, data) {
+    await WritingAPI.patchCharacter(id, data);
+    const response = await WritingAPI.getCharacter(id);
+    setCharacter(response);
     setEditing(false);
   }
 
@@ -29,7 +30,7 @@ function Character() {
       setCharacter(response);
     }
     getCharacter();
-  }, [id, character]);
+  }, [id]);
 
   if (!character) return <Loading />;
   const { name, characterPhotoUrl, Answers } = character;
@@ -53,7 +54,8 @@ function Character() {
         <CharacterForm
           whichAction={"edit"}
           characterId={id}
-          patchCharacter={patchCharacter}
+          patchCharacter={patchC}
+          editStatus={setEditing}
         />
       ) : null}
       {Answers.length ? (
@@ -61,7 +63,12 @@ function Character() {
       ) : (
         <p>
           You haven't added any questionaire answers for this character yet.
-          Create some.
+          <Link
+            to="/questionaires-questions"
+            state={{ from: name, characterId: id }}
+          >
+            Search questions and add answers
+          </Link>
         </p>
       )}
     </div>

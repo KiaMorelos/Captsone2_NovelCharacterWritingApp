@@ -3,7 +3,12 @@ import { WritingAPI } from "../../api/writingApi";
 import { generateName } from "../../api/namesApi";
 import Loading from "../loading/Loading";
 
-function CharacterForm({ whichAction, characterId, patchCharacter }) {
+function CharacterForm({
+  whichAction,
+  characterId,
+  patchCharacter,
+  editStatus,
+}) {
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -45,8 +50,7 @@ function CharacterForm({ whichAction, characterId, patchCharacter }) {
         const res = await WritingAPI.newCharacter(formData);
         setCharacter(res);
       } else {
-        const res = await patchCharacter(characterId, formData);
-        setCharacter(res);
+        patchCharacter(characterId, formData);
       }
 
       setLoading(false);
@@ -102,6 +106,7 @@ function CharacterForm({ whichAction, characterId, patchCharacter }) {
         ) : (
           <button>Save Edit</button>
         )}
+        <button onClick={() => editStatus(false)}>Cancel edit</button>
       </form>
     </div>
   );
