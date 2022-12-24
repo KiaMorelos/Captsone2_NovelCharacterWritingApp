@@ -5,7 +5,7 @@ import { WritingAPI } from "./api/writingApi";
 import "./App.css";
 import AuthContext from "./components/context/AuthContext";
 import useLocalStorage from "./hooks/useLocalStorage";
-import NavBar from "./components/navbar/NavBar";
+import Menu from "./components/navbar/Menu";
 import AppRoutes from "./routes/AppRoutes";
 import Loading from "./components/loading/Loading";
 
@@ -63,7 +63,7 @@ function App() {
     <AuthContext.Provider value={{ activeUser }}>
       <div className="App">
         <BrowserRouter>
-          <NavBar logout={logout} />
+          <Menu logout={logout} />
           <AppRoutes login={login} signup={signup} />
         </BrowserRouter>
       </div>

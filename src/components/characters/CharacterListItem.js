@@ -1,19 +1,37 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencil } from "@fortawesome/free-solid-svg-icons";
+
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import "./CharacterList.css";
+
 function CharacterListItem({ id, name, characterPhotoUrl, deleteCharacter }) {
   return (
-    <li id={id} key={id}>
+    <Card style={{ width: "10rem", margin: "5%" }} bg="dark" key={id}>
       <a href={`characters/${id}`}>
         {characterPhotoUrl ? (
-          <img src={characterPhotoUrl} alt="" />
+          <Card.Img src={characterPhotoUrl} alt="" />
         ) : (
-          <img
+          <Card.Img
             src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=100`}
             alt=""
           />
         )}
-        {name}
       </a>
-      <button onClick={() => deleteCharacter(id)}>Delete</button>
-    </li>
+      <Card.Body>
+        <Card.Text>
+          <a href={`characters/${id}`}>
+            <FontAwesomeIcon icon={faPencil} /> {name}
+          </a>
+        </Card.Text>
+        <Button
+          onClick={() => deleteCharacter(id)}
+          variant="outline-danger btn-sm"
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </Button>
+      </Card.Body>
+    </Card>
   );
 }
 

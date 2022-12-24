@@ -18,9 +18,12 @@ function Character() {
   }
 
   async function patchC(id, data) {
-    await WritingAPI.patchCharacter(id, data);
-    const response = await WritingAPI.getCharacter(id);
-    setCharacter(response);
+    const res = await WritingAPI.patchCharacter(id, data);
+    setCharacter({
+      ...character,
+      name: res.name,
+      characterPhotoUrl: res.characterPhotoUrl,
+    });
     setEditing(false);
   }
 

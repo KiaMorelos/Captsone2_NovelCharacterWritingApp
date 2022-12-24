@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1c1f2e
+}
+
+.ponyboy {
+  width: 80%;
 }
 
 code {

@@ -76,11 +76,28 @@ class WritingAPI {
   }
 
   static async addAnswer(characterId, questionId, answer) {
-    console.log(this.authToken);
     const res = await this.request(
       `characters/${characterId}/answers`,
       { answers: [{ questionId, answer }] },
       "post"
+    );
+    return res;
+  }
+
+  static async patchAnswer(characterId, answerId, answer) {
+    const res = await this.request(
+      `characters/${characterId}/answers/${answerId}`,
+      { answer },
+      "patch"
+    );
+    return res;
+  }
+
+  static async deleteAnswer(characterId, answerId) {
+    const res = await this.request(
+      `characters/${characterId}/answers/${answerId}`,
+      {},
+      "delete"
     );
     return res;
   }

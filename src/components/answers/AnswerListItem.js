@@ -11,6 +11,8 @@ function AnswerListItem({
       <ul>
         <li>
           {answer} | {answerCategory} | {questionaireName}
+          <button>Edit answer</button>
+          <button>Delete answer</button>
         </li>
       </ul>
     </li>

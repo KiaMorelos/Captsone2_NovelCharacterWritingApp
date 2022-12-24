@@ -1,8 +1,13 @@
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Loading from "../loading/Loading";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm({ login }) {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -18,40 +23,43 @@ function LoginForm({ login }) {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    setLoading(true);
     const status = await login(formData);
+    setLoading(false);
+
     if (status.message === "success") {
-      setTimeout(() => {
-        navigate("/");
-      }, 500);
+      navigate("/");
     }
 
     setFormData({ username: "", password: "" });
   };
+  if (loading) return <Loading />;
   return (
-    <div>
+    <>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>username</label>
-          <input
+
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="LoginForm.Username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
             onChange={handleChange}
             type="text"
             name="username"
             value={formData.username}
           />
-        </div>
-        <div>
-          <label>password</label>
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             onChange={handleChange}
             type="password"
             name="password"
             value={formData.password}
           />
-        </div>
-        <button>login</button>
-      </form>
-    </div>
+        </Form.Group>
+        <Button type="submit">login</Button>
+      </Form>
+    </>
   );
 }
 

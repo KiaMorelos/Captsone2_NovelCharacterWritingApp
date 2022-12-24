@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 import { WritingAPI } from "../../api/writingApi";
 import Loading from "../loading/Loading";
@@ -23,21 +26,25 @@ function AllCharacters() {
   if (!characters) return <Loading />;
 
   return (
-    <ul>
-      {characters.length ? (
-        characters.map((c) => (
-          <CharacterListItem
-            key={c.id}
-            id={c.id}
-            name={c.name}
-            characterPhotoUrl={c.characterPhotoUrl}
-            deleteCharacter={deleteCharacter}
-          />
-        ))
-      ) : (
-        <li>You haven't created any characters yet</li>
-      )}
-    </ul>
+    <Container style={{ padding: "5%" }}>
+      <Row>
+        {characters.length ? (
+          characters.map((c) => (
+            <Col key={c.id}>
+              <CharacterListItem
+                key={c.id}
+                id={c.id}
+                name={c.name}
+                characterPhotoUrl={c.characterPhotoUrl}
+                deleteCharacter={deleteCharacter}
+              />
+            </Col>
+          ))
+        ) : (
+          <p>You haven't created any characters yet</p>
+        )}
+      </Row>
+    </Container>
   );
 }
 

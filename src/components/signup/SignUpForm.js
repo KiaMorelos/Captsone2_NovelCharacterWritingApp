@@ -1,8 +1,13 @@
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Loading from "../loading/Loading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignUpForm({ signup }) {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -19,49 +24,53 @@ function SignUpForm({ signup }) {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    setLoading(true);
     const status = await signup(formData);
+    setLoading(false);
+
     if (status.message === "success") {
-      setTimeout(() => {
-        navigate("/");
-      }, 500);
+      navigate("/");
     }
 
-    setFormData({ username: "", password: "" });
+    setFormData({ username: "", email: "", password: "" });
   };
+  if (loading) return <Loading />;
+
   return (
-    <div>
+    <>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>username</label>
-          <input
+
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="LoginForm.Username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
             onChange={handleChange}
             type="text"
             name="username"
             value={formData.username}
           />
-        </div>
-        <div>
-          <label>email</label>
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             onChange={handleChange}
-            type="text"
+            type="email"
             name="email"
             value={formData.email}
           />
-        </div>
-        <div>
-          <label>password</label>
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             onChange={handleChange}
             type="password"
             name="password"
             value={formData.password}
           />
-        </div>
-        <button>sign up</button>
-      </form>
-    </div>
+        </Form.Group>
+        <Button type="submit">login</Button>
+      </Form>
+    </>
   );
 }
 

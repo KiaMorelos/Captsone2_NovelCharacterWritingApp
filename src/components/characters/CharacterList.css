@@ -1,0 +1,18 @@
+a {
+    padding: 2%;
+    text-decoration: none;
+    color: cornflowerblue
+}
+
+a:hover {
+    color: cadetblue
+}
+
+img {
+    padding: 8% 15%;
+}
+
+.card:hover {
+    scale: 0.94;
+    transition: 1s;
+}
