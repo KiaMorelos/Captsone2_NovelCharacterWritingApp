@@ -1,0 +1,17 @@
+.answer-accordion {
+    width: 80%;
+    margin: 0 auto 20%;
+}
+
+.accordion-item {
+    background-color: white;
+}
+
+.accordion-button {
+    background-color: aliceblue;
+}
+
+.accordion-button:hover {
+    background-color: cadetblue;
+    color: aliceblue;
+}

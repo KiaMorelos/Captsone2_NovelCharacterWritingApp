@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Loading from "../loading/Loading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./SignUpForm.css";
 
 function SignUpForm({ signup }) {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ function SignUpForm({ signup }) {
   if (loading) return <Loading />;
 
   return (
-    <>
+    <div className="signup-form">
       <h1>Sign Up</h1>
 
       <Form onSubmit={handleSubmit}>
@@ -47,12 +48,14 @@ function SignUpForm({ signup }) {
             onChange={handleChange}
             type="text"
             name="username"
+            required
             value={formData.username}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Email</Form.Label>
           <Form.Control
+            required
             onChange={handleChange}
             type="email"
             name="email"
@@ -62,6 +65,7 @@ function SignUpForm({ signup }) {
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Password</Form.Label>
           <Form.Control
+            required
             onChange={handleChange}
             type="password"
             name="password"
@@ -70,7 +74,7 @@ function SignUpForm({ signup }) {
         </Form.Group>
         <Button type="submit">login</Button>
       </Form>
-    </>
+    </div>
   );
 }
 

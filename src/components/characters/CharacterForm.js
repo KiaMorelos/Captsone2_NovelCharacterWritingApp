@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { WritingAPI } from "../../api/writingApi";
 import { generateName } from "../../api/namesApi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../loading/Loading";
 import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import "./CharacterForm.css";
 
 function CharacterForm({
   whichAction,
@@ -21,7 +25,6 @@ function CharacterForm({
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-    console.log(formData);
     setFormData((formData) => ({
       ...formData,
       [name]: value,
@@ -60,7 +63,11 @@ function CharacterForm({
         });
         setCharacter(res);
       } else {
-        patchCharacter(characterId, formData);
+        const res = await patchCharacter(characterId, {
+          name: formData.name,
+          characterPhotoUrl: formData.characterPhotoUrl,
+        });
+        setCharacter(res);
       }
 
       setLoading(false);
@@ -75,40 +82,41 @@ function CharacterForm({
   };
 
   return (
-    <div>
-      <h1>{whichAction === "new" ? "New" : "Edit"} Character</h1>
+    <div className="character-form">
+      {whichAction === "new" ? <h1>Create New Character </h1> : null}
       <p>
         Don't know what to name your character yet? Use the select menu and pick
         the type of name you need and leave the name field blank. A random name
-        will be generated for you. If you select 'I have a name I want to use'
-        but leave the name field blank a random name will still be generated.
-        You can always change the character's name later.
+        will be generated for you.
       </p>
+      <p>You can always change the character's name later.</p>
+
       {loading ? <Loading /> : null}
       {character ? (
-        <p>
-          Successfuly created character:
+        <p className="alert alert-success">
+          <FontAwesomeIcon icon={faCircleCheck} /> Successfuly created
+          character:
           <a href={`characters/${character.id}`}>{character.name}</a>. You can
           keep adding characters by submitting the form, or go straight to
           viewing, <a href={`characters/${character.id}`}>{character.name}</a>
         </p>
       ) : null}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
+      <Form onSubmit={handleSubmit} className="col">
+        <Form.Group className="mb-3">
           <Form.Label>Type of Name to Generate if Desired:</Form.Label>
           <Form.Select
             aria-label="Type of name to generate"
             name="generateName"
             onChange={handleChange}
           >
-            <option value="none">I have a name I want to use</option>
+            <option value="none">I already have a name I want to use</option>
             <option value="male">Generate Random Male Name</option>
             <option value="female">Generate Random Female Name</option>
             <option value="neutral">Generate Random Gender Neutral Name</option>
-            <option value="any">Suprise me</option>
+            <option value="any">Surprise me</option>
           </Form.Select>
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="mb-3">
           <Form.Label>Character's Full Name</Form.Label>
           <Form.Control
             placeholder="Character's Full Name"
@@ -118,7 +126,7 @@ function CharacterForm({
             value={formData.name}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="mb-3">
           <Form.Label>Character Photo URL</Form.Label>
           <Form.Control
             placeholder="https://imgr.com/img"
@@ -131,10 +139,18 @@ function CharacterForm({
         {whichAction === "new" ? (
           <Button type="submit">Create Character</Button>
         ) : (
-          <>
-            <Button onClick={() => editStatus(false)}>Cancel edit</Button>
-            <Button type="submit">Save Edit</Button>
-          </>
+          <Modal.Footer>
+            <Button
+              onClick={() => editStatus(false)}
+              variant="outline-secondary"
+              className="m-3"
+            >
+              Cancel edit
+            </Button>
+            <Button type="submit">
+              <FontAwesomeIcon icon={faFloppyDisk} /> Save Edit
+            </Button>
+          </Modal.Footer>
         )}
       </Form>
     </div>

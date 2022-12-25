@@ -1,0 +1,14 @@
+.to-question {
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+.answer-body {
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 0 10%
+}
+
+.answer {
+    padding: 0 10%
+}

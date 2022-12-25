@@ -1,11 +1,12 @@
 a {
     padding: 2%;
     text-decoration: none;
-    color: cornflowerblue
+    color: cornflowerblue;
+    font-weight: 800;
 }
 
 a:hover {
-    color: cadetblue
+    color: cadetblue;
 }
 
 img {

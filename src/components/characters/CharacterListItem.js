@@ -7,19 +7,19 @@ import "./CharacterList.css";
 
 function CharacterListItem({ id, name, characterPhotoUrl, deleteCharacter }) {
   return (
-    <Card style={{ width: "10rem", margin: "5%" }} bg="dark" key={id}>
+    <Card style={{ width: "18rem", margin: "5%" }} bg="dark" key={id}>
       <a href={`characters/${id}`}>
         {characterPhotoUrl ? (
           <Card.Img src={characterPhotoUrl} alt="" />
         ) : (
           <Card.Img
-            src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=100`}
-            alt=""
+            src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=70`}
+            alt="placeholder photo"
           />
         )}
       </a>
       <Card.Body>
-        <Card.Text>
+        <Card.Text style={{ textAlign: "center" }}>
           <a href={`characters/${id}`}>
             <FontAwesomeIcon icon={faPencil} /> {name}
           </a>

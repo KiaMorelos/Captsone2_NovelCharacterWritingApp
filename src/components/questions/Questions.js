@@ -1,9 +1,19 @@
 import { useState } from "react";
 import AnswerForm from "../answers/AnswerForm";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import "./Questions.css";
 
 function Questions({ questions, characterId }) {
   const [addingAnswer, setAddingAnswer] = useState(false);
   const [q, setQ] = useState(null);
+
+  const handleClose = () => setAddingAnswer(false);
+  const handleShow = () => setAddingAnswer(true);
 
   function setQuestionAndAnswerState(questionObj) {
     setQ(questionObj);
@@ -12,23 +22,35 @@ function Questions({ questions, characterId }) {
   return (
     <>
       {questions.map((question) => (
-        <li key={question.id}>
+        <ListGroup.Item key={question.id} className="questions">
           {question.question}
           {characterId ? (
-            <button onClick={() => setQuestionAndAnswerState(question)}>
-              Add an answer
-            </button>
+            <Button
+              onClick={() => setQuestionAndAnswerState(question)}
+              variant="outline-primary"
+              size="sm"
+              className="pencil-button"
+            >
+              {" "}
+              <FontAwesomeIcon icon={faPencil} /> Add an answer
+            </Button>
           ) : null}
-        </li>
+        </ListGroup.Item>
       ))}
 
       {addingAnswer ? (
-        <AnswerForm
-          question={q.question}
-          characterId={characterId}
-          questionId={q.id}
-          setAddingAnswer={setAddingAnswer}
-        />
+        <Modal show={handleShow} onHide={handleClose}>
+          <Modal.Header closeButton>
+            {" "}
+            <Modal.Title>Add Answer to: {q.question}</Modal.Title>
+          </Modal.Header>
+
+          <AnswerForm
+            characterId={characterId}
+            questionId={q.id}
+            setAddingAnswer={setAddingAnswer}
+          />
+        </Modal>
       ) : null}
     </>
   );

@@ -1,0 +1,26 @@
+.character-form {
+    width: 80%;
+    margin: 5% auto;
+}
+
+@media screen and (max-width: 480px) {
+    .character-form {
+        width: 90%;
+        margin: 5% auto;
+    }
+}
+
+.upper-margin {
+    margin-top: 5%;
+}
+
+h1,
+p {
+    text-align: left;
+    line-height: 1.5em;
+    width: 90%;
+}
+
+form {
+    padding: 5%;
+}

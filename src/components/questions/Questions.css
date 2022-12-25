@@ -1,0 +1,17 @@
+.questions {
+    text-align: left;
+    font-size: large;
+}
+
+.list-group-item {
+    background-color: aliceblue;
+    padding: 3% 10%;
+}
+
+.list-group-item:hover {
+    background-color: white;
+}
+
+.pencil-button {
+    margin-left: 5%;
+}

@@ -1,0 +1,25 @@
+.search-form {
+    width: 80%;
+    margin: 5% auto;
+}
+
+.upper-margin {
+    margin-top: 5%;
+}
+
+.search-form h1 {
+    text-align: left;
+    padding-bottom: 0;
+    margin-bottom: 1%;
+    line-height: 1.2;
+}
+
+.search-form p {
+    width: 90%;
+    margin: 0% auto;
+    padding: 0;
+}
+
+.search-button {
+    margin-bottom: -30%;
+}
