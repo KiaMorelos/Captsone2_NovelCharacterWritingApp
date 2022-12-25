@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AnswerForm from "../answers/AnswerForm";
+import NewAnswerForm from "../answers/NewAnswerForm";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -45,7 +45,7 @@ function Questions({ questions, characterId }) {
             <Modal.Title>Add Answer to: {q.question}</Modal.Title>
           </Modal.Header>
 
-          <AnswerForm
+          <NewAnswerForm
             characterId={characterId}
             questionId={q.id}
             setAddingAnswer={setAddingAnswer}

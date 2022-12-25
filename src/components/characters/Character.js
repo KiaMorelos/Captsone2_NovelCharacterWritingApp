@@ -13,10 +13,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Character() {
   const navigate = useNavigate();
   const [character, setCharacter] = useState(null);
-  const [editing, setEditing] = useState(false);
+  const [editingChar, setEditingChar] = useState(false);
 
-  const handleClose = () => setEditing(false);
-  const handleShow = () => setEditing(true);
+  const handleCloseEditingChar = () => setEditingChar(false);
+  const handleShowEditingChar = () => setEditingChar(true);
   const { id } = useParams();
 
   async function deleteCharacter(id) {
@@ -24,14 +24,20 @@ function Character() {
     navigate("/characters");
   }
 
-  async function patchC(id, data) {
+  async function deleteAns(characterId, answerId) {
+    await WritingAPI.deleteAnswer(characterId, answerId);
+    const result = character.Answers.filter((answer) => answer.id !== answerId);
+    setCharacter({ ...character, Answers: result });
+  }
+
+  async function patchCharacter(id, data) {
     const res = await WritingAPI.patchCharacter(id, data);
     setCharacter({
       ...character,
       name: res.name,
       characterPhotoUrl: res.characterPhotoUrl,
     });
-    setEditing(false);
+    setEditingChar(false);
   }
 
   useEffect(() => {
@@ -72,32 +78,36 @@ function Character() {
           </Link>
         </div>
       ) : null}
-      <Button onClick={() => handleShow()} className="m-3">
+      <Button onClick={() => handleShowEditingChar()} className="m-3">
         <FontAwesomeIcon icon={faPencil} /> Edit Character Name / Image
       </Button>
       <Button onClick={() => deleteCharacter(id)} variant="outline-danger">
         <FontAwesomeIcon icon={faTrash} /> Delete character
       </Button>
-      <Modal show={editing} onHide={handleClose}>
+      <Modal show={editingChar} onHide={handleCloseEditingChar}>
         <Modal.Header closeButton>
           <Modal.Title>
             <FontAwesomeIcon icon={faPencil} /> Editing {name}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {editing ? (
+          {editingChar ? (
             <CharacterForm
               whichAction={"edit"}
               characterId={id}
-              patchCharacter={patchC}
-              editStatus={setEditing}
+              patchCharacter={patchCharacter}
+              editStatus={setEditingChar}
             />
           ) : null}
         </Modal.Body>
       </Modal>
       {Answers.length ? (
         <div>
-          <AllAnswers Answers={Answers} />
+          <AllAnswers
+            Answers={Answers}
+            characterId={id}
+            deleteAns={deleteAns}
+          />
         </div>
       ) : (
         <p

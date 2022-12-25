@@ -5,12 +5,14 @@ import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
 
-function AnswerForm({ characterId, questionId, setAddingAnswer }) {
-  const navigate = useNavigate();
-
-  const [wasAdded, setWasAdded] = useState(false);
+function EditAnswerForm({
+  characterId,
+  questionId,
+  setEditingAnswer,
+  setUpdatedAnswer,
+}) {
+  const [editSuccessful, setEditSuccessful] = useState(null);
   const [formData, setFormData] = useState({
     answer: "",
   });
@@ -26,31 +28,28 @@ function AnswerForm({ characterId, questionId, setAddingAnswer }) {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     const { answer } = formData;
-    const res = await WritingAPI.addAnswer(characterId, questionId, answer);
-    setWasAdded(true);
+    const res = await WritingAPI.patchAnswer(characterId, questionId, answer);
+    if (res.updated) {
+      setEditSuccessful(true);
+      setUpdatedAnswer(answer);
+    }
     setFormData({ answer: "" });
   };
+
   return (
     <div>
-      {wasAdded ? (
+      {editSuccessful ? (
         <div>
           {" "}
           <p
             className="alert alert-success"
             style={{ padding: "5%", margin: "5%" }}
           >
-            <FontAwesomeIcon icon={faCircleCheck} /> Success! Close and keep
-            adding questions or go back to this character's page
+            <FontAwesomeIcon icon={faCircleCheck} /> Success!
           </p>
           <Modal.Footer>
             <Button
-              onClick={() => navigate(`/characters/${characterId}`)}
-              variant="outline-success"
-            >
-              Back to this character's page
-            </Button>
-            <Button
-              onClick={() => setAddingAnswer(false)}
+              onClick={() => setEditingAnswer(false)}
               variant="outline-primary"
             >
               Close
@@ -72,7 +71,7 @@ function AnswerForm({ characterId, questionId, setAddingAnswer }) {
           </Form.Group>
           <Modal.Footer>
             <Button
-              onClick={() => setAddingAnswer(false)}
+              onClick={() => setEditingAnswer(false)}
               variant="outline-secondary"
             >
               Cancel
@@ -88,4 +87,4 @@ function AnswerForm({ characterId, questionId, setAddingAnswer }) {
   );
 }
 
-export default AnswerForm;
+export default EditAnswerForm;
