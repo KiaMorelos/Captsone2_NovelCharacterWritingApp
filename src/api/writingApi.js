@@ -75,6 +75,11 @@ class WritingAPI {
     return remaining.characters;
   }
 
+  static async getAllAnswers(characterId) {
+    const res = await this.request(`characters/${characterId}/answers`);
+    return res.answers;
+  }
+
   static async addAnswer(characterId, questionId, answer) {
     const res = await this.request(
       `characters/${characterId}/answers`,

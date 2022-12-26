@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
-import { faTrash, faPencil, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate, useParams } from "react-router-dom";
+import { faTrash, faPencil } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
@@ -24,12 +24,6 @@ function Character() {
     navigate("/characters");
   }
 
-  async function deleteAns(characterId, answerId) {
-    await WritingAPI.deleteAnswer(characterId, answerId);
-    const result = character.Answers.filter((answer) => answer.id !== answerId);
-    setCharacter({ ...character, Answers: result });
-  }
-
   async function patchCharacter(id, data) {
     const res = await WritingAPI.patchCharacter(id, data);
     setCharacter({
@@ -49,7 +43,7 @@ function Character() {
   }, [id]);
 
   if (!character) return <Loading />;
-  const { name, characterPhotoUrl, Answers } = character;
+  const { name, characterPhotoUrl } = character;
   return (
     <div>
       {characterPhotoUrl ? (
@@ -67,17 +61,7 @@ function Character() {
       >
         {name}
       </h1>
-      {Answers.length ? (
-        <div style={{ margin: "0 auto", padding: "0 0 2% 0" }}>
-          <Link
-            to="/questionaires-questions"
-            state={{ from: name, characterId: id }}
-          >
-            <FontAwesomeIcon icon={faPlus} /> Search for more questions to add
-            to this character's profile
-          </Link>
-        </div>
-      ) : null}
+
       <Button onClick={() => handleShowEditingChar()} className="m-3">
         <FontAwesomeIcon icon={faPencil} /> Edit Character Name / Image
       </Button>
@@ -101,31 +85,9 @@ function Character() {
           ) : null}
         </Modal.Body>
       </Modal>
-      {Answers.length ? (
-        <div>
-          <AllAnswers
-            Answers={Answers}
-            characterId={id}
-            deleteAns={deleteAns}
-          />
-        </div>
-      ) : (
-        <p
-          style={{
-            margin: "0 auto",
-            padding: "0 5% 2% 5%",
-            textAlign: "center",
-          }}
-        >
-          You haven't added any questionaire answers for this character yet.
-          <Link
-            to="/questionaires-questions"
-            state={{ from: name, characterId: id }}
-          >
-            <FontAwesomeIcon icon={faPlus} /> Search questions and add answers
-          </Link>
-        </p>
-      )}
+      <div>
+        <AllAnswers characterId={id} characterName={name} />
+      </div>
     </div>
   );
 }
