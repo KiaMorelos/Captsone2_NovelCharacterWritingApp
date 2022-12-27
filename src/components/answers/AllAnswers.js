@@ -30,7 +30,7 @@ function AllAnswers({ characterId, characterName }) {
   return (
     <div>
       {answers.length ? (
-        <div style={{ margin: "0 auto", padding: "0 0 2% 0" }}>
+        <div className="m-auto p-3">
           <Link
             to="/questionaires-questions"
             state={{ from: characterName, characterId }}
@@ -61,13 +61,7 @@ function AllAnswers({ characterId, characterName }) {
           ))}
         </Accordion>
       ) : (
-        <p
-          style={{
-            margin: "0 auto",
-            padding: "0 5% 2% 5%",
-            textAlign: "center",
-          }}
-        >
+        <p className="m-auto p-5 text-center">
           You haven't added any questionaire answers for this character yet.
           <Link
             to="/questionaires-questions"

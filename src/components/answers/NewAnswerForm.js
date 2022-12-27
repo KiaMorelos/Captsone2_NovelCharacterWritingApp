@@ -35,10 +35,7 @@ function NewAnswerForm({ characterId, questionId, setAddingAnswer }) {
       {wasAdded ? (
         <div>
           {" "}
-          <p
-            className="alert alert-success"
-            style={{ padding: "5%", margin: "5%" }}
-          >
+          <p className="alert alert-success m-auto mt-5 mb-5 p-5">
             <FontAwesomeIcon icon={faCircleCheck} /> Success! Close and keep
             adding questions or go back to this character's page
           </p>

@@ -35,7 +35,6 @@ function ProfileForm() {
       if (!formData.newPassword) formData.newPassword = formData.password;
       const res = await WritingAPI.updateUser(activeUser.userId, formData);
       setStatus(res);
-      console.log(res);
       setLoading(false);
       setFormData({ username: "", email: "", password: "", newPassword: "" });
     } catch (err) {
@@ -109,7 +108,7 @@ function ProfileForm() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="Profile.Password">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               required
               placeholder="enter existing password to make changes"

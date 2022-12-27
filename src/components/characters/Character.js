@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import { faTrash, faPencil } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
 import { WritingAPI } from "../../api/writingApi";
 import AllAnswers from "../answers/AllAnswers";
 import Loading from "../loading/Loading";
 import CharacterForm from "./CharacterForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Character.css";
 
 function Character() {
+  const { activeUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [character, setCharacter] = useState(null);
   const [editingChar, setEditingChar] = useState(false);
@@ -35,6 +37,7 @@ function Character() {
   }
 
   useEffect(() => {
+    if (!activeUser) return;
     async function getCharacter() {
       try {
         const response = await WritingAPI.getCharacter(id);
@@ -51,27 +54,46 @@ function Character() {
       }
     }
     getCharacter();
-  }, [id, navigate]);
+  }, [id, navigate, activeUser]);
 
-  if (!character) return <Loading />;
+  if (!activeUser || !character) return <Loading />;
   const { name, characterPhotoUrl } = character;
   return (
     <div>
       {characterPhotoUrl ? (
-        <img src={characterPhotoUrl} alt="" />
+        <div
+          role="img"
+          aria-label="character photo"
+          title="character photo"
+          style={{
+            backgroundImage: `url(${characterPhotoUrl})`,
+          }}
+          className="character-photo"
+        >
+          <div className="contain-photo"></div>
+        </div>
       ) : (
-        <img
-          src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=150`}
-          alt=""
-          style={{ margin: "0 auto", padding: "5% 0 0 0" }}
-        />
+        <>
+          <img
+            src={`https://avatars.dicebear.com/api/adventurer/${id}.svg?size=150`}
+            alt=""
+            className="contain-photo"
+          />
+        </>
       )}
-      <h1
-        className="text-center"
-        style={{ margin: "0 auto", padding: "0 0 2% 0" }}
-      >
-        {name}
-      </h1>
+      {!characterPhotoUrl ? (
+        <div className="m-1">
+          <small>
+            <a
+              href="https://avatars.dicebear.com/licenses"
+              style={{ fontWeight: "300", color: "aliceblue" }}
+            >
+              'Adventurer' Avatar by Lisa Wischofsky via DiceBear
+            </a>
+          </small>
+        </div>
+      ) : null}
+      <h1 className="text-center character-name">{name}</h1>
 
       <Button onClick={() => handleShowEditingChar()} className="m-3">
         <FontAwesomeIcon icon={faPencil} /> Edit Character Name / Image

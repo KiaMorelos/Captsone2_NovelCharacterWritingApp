@@ -1,0 +1,17 @@
+.character-photo {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contain-photo {
+    height: 200px;
+    width: 200px;
+    margin: 2% auto;
+    padding: 5% 0 0 0;
+}
+
+.character-name {
+    margin: 0 auto;
+    padding: 0 0 2% 0;
+}

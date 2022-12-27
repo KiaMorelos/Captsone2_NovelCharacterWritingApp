@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGhost } from "@fortawesome/free-solid-svg-icons";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,6 +11,7 @@ import CharacterListItem from "./CharacterListItem";
 
 function AllCharacters() {
   const [characters, setCharacters] = useState(null);
+  const { activeUser } = useContext(AuthContext);
 
   async function deleteCharacter(id) {
     const response = await WritingAPI.deleteCharacter(id);
@@ -16,17 +20,19 @@ function AllCharacters() {
 
   useEffect(() => {
     async function getCharacters() {
+      if (!activeUser) return;
       const response = await WritingAPI.getAllCharacters();
       setCharacters(response);
     }
     getCharacters();
-  }, []);
+  }, [activeUser]);
 
-  if (!characters) return <Loading />;
+  if (!activeUser || !characters) return <Loading />;
 
   return (
-    <Container style={{ padding: "5%" }}>
-      <Row>
+    <Container className="pt-5">
+      <h1 className="text-center m-auto">My Characters</h1>
+      <Row style={{ margin: "auto" }}>
         {characters.length ? (
           characters.map((c) => (
             <Col key={c.id}>
@@ -40,7 +46,10 @@ function AllCharacters() {
             </Col>
           ))
         ) : (
-          <p>You haven't created any characters yet</p>
+          <h2>
+            <FontAwesomeIcon icon={faGhost} /> You haven't created any
+            characters yet
+          </h2>
         )}
       </Row>
     </Container>

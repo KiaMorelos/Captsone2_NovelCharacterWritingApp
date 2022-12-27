@@ -41,10 +41,7 @@ function EditAnswerForm({
       {editSuccessful ? (
         <div>
           {" "}
-          <p
-            className="alert alert-success"
-            style={{ padding: "5%", margin: "5%" }}
-          >
+          <p className="alert alert-success m-auto mt-5 mb-5 p-5">
             <FontAwesomeIcon icon={faCircleCheck} /> Success!
           </p>
           <Modal.Footer>

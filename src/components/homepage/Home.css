@@ -1,0 +1,23 @@
+.homepage {
+    background-image: url("../../../public/kelly-sikkema-tk9RQCq5eQo-unsplash.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.welcome-content {
+    padding: 15vh 20vw 100vh;
+    margin: 0% auto;
+    background-color: #1c1f2e;
+    background: rgba(28,
+            31,
+            46, 0.5);
+}
+
+.lead-area {
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
