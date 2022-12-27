@@ -8,6 +8,8 @@ import QuestionSearchForm from "../components/questions/QuestionSearchForm";
 import Character from "../components/characters/Character";
 import ProfileForm from "../components/profile/ProfileForm";
 import CharacterForm from "../components/characters/CharacterForm";
+import NotFound from "../components/notFoundPage/NotFound";
+import Oops from "../components/oops/Oops";
 
 function AppRoutes({ login, signup }) {
   return (
@@ -29,6 +31,9 @@ function AppRoutes({ login, signup }) {
       </Route>
       <Route path="login" element={<LoginForm login={login} />} />
       <Route path="signup" element={<SignUpForm signup={signup} />} />
+      <Route path="/404" element={<NotFound />} />
+      <Route path="/oops" element={<Oops />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

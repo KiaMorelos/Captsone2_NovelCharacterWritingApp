@@ -28,7 +28,9 @@ function AnswerListItem({
           <span className="to-question">{toQuestion}</span>
         </Accordion.Header>
         <Accordion.Body>
-          <p className="answer-body">{updatedAnswer}</p>
+          <p className="answer-body">
+            {updatedAnswer === answer ? answer : updatedAnswer}
+          </p>
           <p className="answer">
             Question Category: {questionCategory}
             <br />
@@ -55,7 +57,8 @@ function AnswerListItem({
         <Modal show={handleShowEditingAns} onHide={handleCloseEditingAns}>
           <Modal.Header closeButton>
             <Modal.Title>
-              <FontAwesomeIcon icon={faPencil} /> Editing Answer: {answer}
+              <FontAwesomeIcon icon={faPencil} /> Editing Answer:{" "}
+              {updatedAnswer === answer ? answer : updatedAnswer}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

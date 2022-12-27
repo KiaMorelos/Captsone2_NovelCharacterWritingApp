@@ -19,9 +19,9 @@ function App() {
       const res = await WritingAPI.signup(data);
       setToken(res);
 
-      return { message: "success" };
+      return { status: "success" };
     } catch (err) {
-      return { message: "failed", err };
+      return { status: "failed", err };
     }
   }
 
@@ -29,9 +29,9 @@ function App() {
     try {
       const res = await WritingAPI.login(data);
       setToken(res);
-      return { message: "success" };
+      return { status: "success" };
     } catch (err) {
-      return { message: "failed", err };
+      return { status: "failed", err };
     }
   }
 
@@ -51,6 +51,7 @@ function App() {
           setActiveUser({ userId, ...res });
           setLoading(false);
         } catch (err) {
+          setLoading(false);
           setActiveUser(null);
           return { message: "unauthorized" };
         }
@@ -58,7 +59,9 @@ function App() {
     }
     getActiveUser();
   }, [token]);
+
   if (loading) return <Loading />;
+
   return (
     <AuthContext.Provider value={{ activeUser }}>
       <div className="App">

@@ -40,7 +40,7 @@ function AllAnswers({ characterId, characterName }) {
           </Link>
         </div>
       ) : null}
-      <h2>Answers</h2>
+      <h2>Answer Worksheet</h2>
 
       {answers.length ? (
         <Accordion

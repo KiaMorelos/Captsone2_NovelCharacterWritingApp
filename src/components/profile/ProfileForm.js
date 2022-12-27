@@ -1,13 +1,11 @@
 import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUserAstronaut,
-  faCircleCheck,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { WritingAPI } from "../../api/writingApi";
 import AuthContext from "../context/AuthContext";
+import FlashMessage from "../flashMessage/FlashMessage";
 import Loading from "../loading/Loading";
 import "./ProfileForm.css";
 
@@ -37,10 +35,13 @@ function ProfileForm() {
       if (!formData.newPassword) formData.newPassword = formData.password;
       const res = await WritingAPI.updateUser(activeUser.userId, formData);
       setStatus(res);
+      console.log(res);
       setLoading(false);
       setFormData({ username: "", email: "", password: "", newPassword: "" });
     } catch (err) {
-      console.log(err);
+      let message = { message: err };
+      setStatus(message);
+      setLoading(false);
     }
   };
 
@@ -50,32 +51,46 @@ function ProfileForm() {
       <h1 className="upper-margin">
         <FontAwesomeIcon icon={faUserAstronaut} /> My Profile
       </h1>
+      {status && status.message === "Successfully updated profile" ? (
+        <h2>
+          username: {status.username} <br /> email: {status.email}
+        </h2>
+      ) : (
+        <h2>
+          username: {activeUser.username}
+          <br />
+          email: {activeUser.email}
+        </h2>
+      )}
+
       {!status ? (
         <p className="alert alert-danger profile-form">
           If you make changes here, you'll have to use your updated
           username/password the next time you login.
         </p>
       ) : null}
-
-      {loading ? <Loading /> : null}
       {status ? (
-        <div>
-          <p className="alert alert-success profile-form">
-            <FontAwesomeIcon icon={faCircleCheck} /> {status.message}
-            <br />
-            Your updated username is: '{status.username}' and your updated email
-            is: '{status.email}'
-            <br /> Use these credentials next time you login.
-          </p>
-        </div>
+        <>
+          {status.message === "Successfully updated profile" ? (
+            <div className="upper-margin profile-form">
+              <FlashMessage alertType={"success"} message={status.message} />
+            </div>
+          ) : (
+            <div className="upper-margin profile-form">
+              <FlashMessage alertType={"warning"} message={status.message} />
+            </div>
+          )}
+        </>
       ) : null}
+      {loading ? <Loading /> : null}
       <div className="profile-form">
+        <h3>Update my information</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="Profile.Username">
             <Form.Label>Username</Form.Label>
             <Form.Control
               required
-              placeholder={activeUser.username}
+              placeholder="Enter new or current username"
               onChange={handleChange}
               type="text"
               name="username"
@@ -86,9 +101,9 @@ function ProfileForm() {
             <Form.Label>Email</Form.Label>
             <Form.Control
               required
-              placeholder={activeUser.email}
+              placeholder="Enter new or current email"
               onChange={handleChange}
-              type="text"
+              type="email"
               name="email"
               value={formData.email}
             />

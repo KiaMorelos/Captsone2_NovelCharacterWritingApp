@@ -15,7 +15,9 @@ class WritingAPI {
       return (await API_CLIENT({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("WRITING API Error:", err.response.data.error.message);
-      return err.response.data.error;
+      let message = err.response.data.error.message;
+      //this is an array because react expects an array for this to work properly
+      throw Array.isArray(message) ? message : [message];
     }
   }
 

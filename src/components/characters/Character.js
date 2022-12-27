@@ -36,11 +36,22 @@ function Character() {
 
   useEffect(() => {
     async function getCharacter() {
-      const response = await WritingAPI.getCharacter(id);
-      setCharacter(response);
+      try {
+        const response = await WritingAPI.getCharacter(id);
+        setCharacter(response);
+      } catch (err) {
+        if (
+          err[0] === "404 Not Found" ||
+          err[0] === "This character does not exist"
+        ) {
+          navigate("/404");
+        } else {
+          navigate("/oops");
+        }
+      }
     }
     getCharacter();
-  }, [id]);
+  }, [id, navigate]);
 
   if (!character) return <Loading />;
   const { name, characterPhotoUrl } = character;
