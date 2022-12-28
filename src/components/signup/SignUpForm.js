@@ -61,7 +61,7 @@ function SignUpForm({ signup }) {
             value={formData.username}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Group className="mb-3" controlId="LoginForm.Email">
           <Form.Label>Email</Form.Label>
           <Form.Control
             required
@@ -74,7 +74,7 @@ function SignUpForm({ signup }) {
             value={formData.email}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Group className="mb-3" controlId="LoginForm.Password">
           <Form.Label>Password (must be at least 8 characters long)</Form.Label>
           <Form.Control
             required

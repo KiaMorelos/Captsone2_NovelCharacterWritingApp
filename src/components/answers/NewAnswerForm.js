@@ -5,11 +5,9 @@ import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NewAnswerForm({ characterId, questionId, setAddingAnswer }) {
-  const navigate = useNavigate();
-
   const [wasAdded, setWasAdded] = useState(false);
   const [formData, setFormData] = useState({
     answer: "",
@@ -41,8 +39,9 @@ function NewAnswerForm({ characterId, questionId, setAddingAnswer }) {
           </p>
           <Modal.Footer>
             <Button
-              onClick={() => navigate(`/characters/${characterId}`)}
               variant="outline-success"
+              as={Link}
+              to={`/characters/${characterId}`}
             >
               Back to this character's page
             </Button>

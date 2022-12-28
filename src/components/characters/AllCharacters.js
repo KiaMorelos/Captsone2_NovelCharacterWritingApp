@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGhost, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +14,6 @@ import Button from "react-bootstrap/Button";
 function AllCharacters() {
   const [characters, setCharacters] = useState(null);
   const { activeUser } = useContext(AuthContext);
-  const navigate = useNavigate();
   async function deleteCharacter(id) {
     const response = await WritingAPI.deleteCharacter(id);
     setCharacters(response);
@@ -53,7 +52,7 @@ function AllCharacters() {
               <FontAwesomeIcon icon={faGhost} /> You haven't created any
               characters yet, or you already killed them all.
             </h2>
-            <Button onClick={() => navigate("/new-character")}>
+            <Button as={Link} to={`/new-character`}>
               <FontAwesomeIcon icon={faPlus} /> Create New Character
             </Button>
           </div>

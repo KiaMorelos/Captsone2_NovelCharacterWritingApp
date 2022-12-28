@@ -1,16 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import AuthContext from "../components/context/AuthContext";
+import AuthContextProvider from "./testUtils";
 import QuestionSearchForm from "../components/questions/QuestionSearchForm";
-
-const testUser = { username: "testuser" };
 
 test("renders without crashing", () => {
   render(
-    <AuthContext.Provider value={testUser}>
+    <AuthContextProvider>
       <MemoryRouter>
         <QuestionSearchForm />
       </MemoryRouter>
-    </AuthContext.Provider>
+    </AuthContextProvider>
   );
 });

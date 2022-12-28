@@ -1,16 +1,24 @@
 import { render, screen } from "@testing-library/react";
-import AuthContext from "../components/context/AuthContext";
+import AuthContextProvider from "./testUtils";
 import { MemoryRouter } from "react-router-dom";
 import Menu from "../components/navbar/Menu";
 
-const testUser = { username: "testuser" };
-
-test("renders without crashing", () => {
+test("renders without crashing for regular user", () => {
   render(
-    <AuthContext.Provider value={testUser}>
+    <AuthContextProvider activeUser={null}>
       <MemoryRouter>
         <Menu />
       </MemoryRouter>
-    </AuthContext.Provider>
+    </AuthContextProvider>
+  );
+});
+
+test("renders without crashing for logged in user", () => {
+  render(
+    <AuthContextProvider>
+      <MemoryRouter>
+        <Menu />
+      </MemoryRouter>
+    </AuthContextProvider>
   );
 });

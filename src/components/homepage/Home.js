@@ -2,13 +2,12 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMasksTheater, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./Home.css";
-import { useNavigate } from "react-router-dom";
 
 function Home() {
   const { activeUser } = useContext(AuthContext);
-  const navigate = useNavigate();
   return (
     <div className="homepage">
       <div className="welcome-content">
@@ -20,10 +19,10 @@ function Home() {
           <div className="lead-area">
             <p>Start building or editing characters</p>
 
-            <Button className="m-3" onClick={() => navigate(`/characters`)}>
+            <Button className="m-3" as={Link} to="/characters">
               <FontAwesomeIcon icon={faMasksTheater} /> My Characters
             </Button>
-            <Button onClick={() => navigate(`/new-character`)}>
+            <Button as={Link} to="/new-character">
               <FontAwesomeIcon icon={faPlus} /> Create new character
             </Button>
           </div>
@@ -35,10 +34,12 @@ function Home() {
             </p>
             <p> Login or sign up to get started</p>
 
-            <Button className="m-3 login" onClick={() => navigate(`/login`)}>
+            <Button className="m-3 login" as={Link} to="/login">
               Login
             </Button>
-            <Button onClick={() => navigate(`/signup`)}>Sign Up</Button>
+            <Button as={Link} to="/signup">
+              Sign Up
+            </Button>
           </div>
         )}
       </div>
