@@ -87,7 +87,7 @@ function SignUpForm({ signup }) {
             value={formData.password}
           />
         </Form.Group>
-        <Button type="submit">login</Button>
+        <Button type="submit">Sign Up</Button>
       </Form>
     </div>
   );

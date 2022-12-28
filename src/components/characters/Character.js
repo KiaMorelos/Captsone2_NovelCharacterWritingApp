@@ -75,7 +75,7 @@ function Character() {
       ) : (
         <>
           <img
-            src={`https://avatars.dicebear.com/api/adventurer/${id}.svg?size=150`}
+            src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=150`}
             alt=""
             className="contain-photo"
           />
@@ -88,7 +88,7 @@ function Character() {
               href="https://avatars.dicebear.com/licenses"
               style={{ fontWeight: "300", color: "aliceblue" }}
             >
-              'Adventurer' Avatar by Lisa Wischofsky via DiceBear
+              'bottts' by Pablo Stanley via DiceBear
             </a>
           </small>
         </div>

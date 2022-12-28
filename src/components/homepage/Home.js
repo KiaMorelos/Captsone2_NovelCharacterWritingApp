@@ -29,7 +29,11 @@ function Home() {
           </div>
         ) : (
           <div className="lead-area">
-            <p> login or sign up to get started</p>
+            <p>
+              Flesh out the characters of your next novel or RPG game. 4
+              different worksheets and 138 available questions to choose from.
+            </p>
+            <p> Login or sign up to get started</p>
 
             <Button className="m-3" onClick={() => navigate(`/login`)}>
               Login

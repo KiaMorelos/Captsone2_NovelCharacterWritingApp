@@ -74,7 +74,7 @@ function LoginForm({ login }) {
             maxLength="20"
           />
         </Form.Group>
-        <Button type="submit">login</Button>
+        <Button type="submit">Login</Button>
       </Form>
     </div>
   );

@@ -86,10 +86,11 @@ function QuestionSearchForm() {
         {from ? ` to add to ${from}'s profile` : null}
       </h1>
       <p>
-        Mouse Paw Media's questionaire encompasses all question available
-        categories currently available. The other three are primarily
-        psychological information questions, but also very valuable places to
-        start
+        Mouse Paw Media's questionaire encompasses all question categories
+        currently available. The other three are primarily psychological
+        information questions, but also very valuable places to start. Bernard
+        Pivot's and James Lipton's questionaires are almost identical, but there
+        are slight differences.
       </p>
 
       <Form onSubmit={handleSubmit}>

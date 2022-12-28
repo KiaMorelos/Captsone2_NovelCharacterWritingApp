@@ -15,7 +15,7 @@ function CharacterListItem({ id, name, characterPhotoUrl, deleteCharacter }) {
               href="https://avatars.dicebear.com/licenses"
               style={{ fontWeight: "300", color: "aliceblue" }}
             >
-              'Adventurer' Avatar by Lisa Wischofsky via DiceBear
+              'bottts' by Pablo Stanley via DiceBear
             </a>
           </small>
         </div>
@@ -27,7 +27,7 @@ function CharacterListItem({ id, name, characterPhotoUrl, deleteCharacter }) {
       ) : (
         <a href={`characters/${id}`}>
           <Card.Img
-            src={`https://avatars.dicebear.com/api/adventurer/${id}.svg?size=70`}
+            src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=70`}
             alt="placeholder photo"
           />
         </a>

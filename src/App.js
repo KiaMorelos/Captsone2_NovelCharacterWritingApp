@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import { WritingAPI } from "./api/writingApi";
 import "./App.css";
@@ -65,10 +64,8 @@ function App() {
   return (
     <AuthContext.Provider value={{ activeUser }}>
       <div className="App">
-        <BrowserRouter>
-          <Menu logout={logout} />
-          <AppRoutes login={login} signup={signup} />
-        </BrowserRouter>
+        <Menu logout={logout} />
+        <AppRoutes login={login} signup={signup} />
       </div>
     </AuthContext.Provider>
   );

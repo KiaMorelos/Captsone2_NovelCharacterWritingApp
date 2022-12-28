@@ -1,18 +1,20 @@
 import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGhost } from "@fortawesome/free-solid-svg-icons";
+import { faGhost, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { WritingAPI } from "../../api/writingApi";
 import Loading from "../loading/Loading";
 import CharacterListItem from "./CharacterListItem";
+import Button from "react-bootstrap/Button";
 
 function AllCharacters() {
   const [characters, setCharacters] = useState(null);
   const { activeUser } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   async function deleteCharacter(id) {
     const response = await WritingAPI.deleteCharacter(id);
     setCharacters(response);
@@ -46,10 +48,15 @@ function AllCharacters() {
             </Col>
           ))
         ) : (
-          <h2>
-            <FontAwesomeIcon icon={faGhost} /> You haven't created any
-            characters yet
-          </h2>
+          <div>
+            <h2 className="m-5">
+              <FontAwesomeIcon icon={faGhost} /> You haven't created any
+              characters yet, or you already killed them all.
+            </h2>
+            <Button onClick={() => navigate("/new-character")}>
+              <FontAwesomeIcon icon={faPlus} /> Create New Character
+            </Button>
+          </div>
         )}
       </Row>
     </Container>
