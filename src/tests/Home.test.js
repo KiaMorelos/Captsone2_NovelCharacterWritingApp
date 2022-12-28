@@ -13,3 +13,20 @@ test("renders without crashing", () => {
     </AuthContext.Provider>
   );
 });
+
+test("contains content and signup/login buttons", () => {
+  render(
+    <AuthContext.Provider value={testUser}>
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>
+    </AuthContext.Provider>
+  );
+  const welcomeHeader = screen.getByText("Welcome to WritSandbox");
+  const leadCopy = screen.queryByText(
+    "Flesh out the characters of your next novel or RPG game."
+  );
+  const buttons = screen.getAllByRole("button");
+  expect(buttons[0].textContent).toBe("Login");
+  expect(buttons[1].textContent).toBe("Sign Up");
+});

@@ -35,7 +35,7 @@ function Home() {
             </p>
             <p> Login or sign up to get started</p>
 
-            <Button className="m-3" onClick={() => navigate(`/login`)}>
+            <Button className="m-3 login" onClick={() => navigate(`/login`)}>
               Login
             </Button>
             <Button onClick={() => navigate(`/signup`)}>Sign Up</Button>
