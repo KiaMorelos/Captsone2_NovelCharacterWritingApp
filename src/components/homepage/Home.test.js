@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import AuthContextProvider from "./testUtils";
+import AuthContextProvider from "../../testUtils";
 import { MemoryRouter } from "react-router-dom";
 
-import Home from "../components/homepage/Home";
+import Home from "./Home";
 test("renders without crashing", () => {
   render(
     <AuthContextProvider activeUser={null}>

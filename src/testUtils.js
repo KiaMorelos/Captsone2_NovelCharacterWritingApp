@@ -1,4 +1,4 @@
-import AuthContext from "../components/context/AuthContext";
+import AuthContext from "./components/context/AuthContext";
 
 const testUser = {
   username: "testuser",

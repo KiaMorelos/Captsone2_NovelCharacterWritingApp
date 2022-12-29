@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import ProfileForm from "../components/profile/ProfileForm";
+import ProfileForm from "./ProfileForm";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 
-import AuthContextProvider from "./testUtils";
+import AuthContextProvider from "../../testUtils";
 
 test("renders without crashing", () => {
   render(

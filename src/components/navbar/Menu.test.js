@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import AuthContextProvider from "./testUtils";
+import AuthContextProvider from "../../testUtils";
 import { MemoryRouter } from "react-router-dom";
-import Menu from "../components/navbar/Menu";
+import Menu from "./Menu";
 
 test("renders without crashing for regular user", () => {
   render(

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import Loading from "../components/loading/Loading";
+import Oops from "./Oops";
 
 test("renders without crashing", () => {
-  render(<Loading />);
+  render(<Oops />);
 });

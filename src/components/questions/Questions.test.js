@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import Oops from "../components/oops/Oops";
+import Questions from "./Questions";
 
 test("renders without crashing", () => {
-  render(<Oops />);
+  render(<Questions questions={[]} />);
 });
