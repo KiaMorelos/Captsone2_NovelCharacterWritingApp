@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import SignUpForm from "../components/signup/SignUpForm";
@@ -23,7 +23,7 @@ test("there should be content on the page", () => {
   expect(button.textContent).toBe("Sign Up");
 });
 
-test("that the form inputs work and form can be submitted with data", () => {
+test("that the form inputs work and form can be submitted with data", async () => {
   const mockResponse = [{ status: "success" }];
   const mockSubmit = jest.fn(() => Promise.resolve(mockResponse));
   const utils = render(
@@ -37,14 +37,16 @@ test("that the form inputs work and form can be submitted with data", () => {
     "Password (must be at least 8 characters long)"
   );
   const button = screen.getByRole("button");
-  act(() => {
+  await waitFor(() => {
     fireEvent.change(username, { target: { value: "newuser" } });
     fireEvent.change(email, { target: { value: "email" } });
     fireEvent.change(password, { target: { value: "password" } });
+
+    expect(button.textContent).toBe("Sign Up");
+    expect(username.value).toBe("newuser");
+    expect(email.value).toBe("email");
+    expect(password.value).toBe("password");
+
+    fireEvent.click(button);
   });
-  expect(button.textContent).toBe("Sign Up");
-  expect(username.value).toBe("newuser");
-  expect(email.value).toBe("email");
-  expect(password.value).toBe("password");
-  fireEvent.click(button);
 });

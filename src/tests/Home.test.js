@@ -3,7 +3,6 @@ import AuthContextProvider from "./testUtils";
 import { MemoryRouter } from "react-router-dom";
 
 import Home from "../components/homepage/Home";
-const testUser = { username: "testuser" };
 test("renders without crashing", () => {
   render(
     <AuthContextProvider activeUser={null}>
