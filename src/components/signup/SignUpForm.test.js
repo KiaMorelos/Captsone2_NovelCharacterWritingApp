@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import SignUpForm from "./SignUpForm";
-import { act } from "react-dom/test-utils";
 
 test("renders without crashing", () => {
   render(

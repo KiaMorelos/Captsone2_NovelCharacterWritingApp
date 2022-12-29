@@ -22,13 +22,16 @@ function CharacterListItem({ id, name, characterPhotoUrl, deleteCharacter }) {
       ) : null}
       {characterPhotoUrl ? (
         <a href={`characters/${id}`}>
-          <Card.Img src={characterPhotoUrl} alt="" />{" "}
+          <Card.Img
+            src={characterPhotoUrl}
+            alt={`character photo of ${name}`}
+          />
         </a>
       ) : (
         <a href={`characters/${id}`}>
           <Card.Img
             src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=70`}
-            alt="placeholder photo"
+            alt="placeholder character photo of cute robot"
           />
         </a>
       )}

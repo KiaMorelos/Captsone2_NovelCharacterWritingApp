@@ -9,7 +9,11 @@ import { getAllQuestionairesResponse } from "../../mocks/handlers";
 
 describe("Question Search Tests", () => {
   test("renders without crashing", () => {
-    render(<QuestionSearchForm />);
+    render(
+      <MemoryRouter>
+        <QuestionSearchForm />
+      </MemoryRouter>
+    );
   });
 
   test("component has content", () => {
@@ -24,17 +28,4 @@ describe("Question Search Tests", () => {
       utils.queryByText("Search Questionaires and Questions")
     ).toBeInTheDocument();
   });
-
-  ///BROKEN TEST
-  //   test("component has form that works", async () => {
-  //     mswServer.use(getAllQuestionairesResponse);
-
-  //     const utils = render(
-  //       <AuthContextProvider>
-  //         <MemoryRouter>
-  //           <QuestionSearchForm />
-  //         </MemoryRouter>
-  //       </AuthContextProvider>
-  //     );
-  //   });
 });

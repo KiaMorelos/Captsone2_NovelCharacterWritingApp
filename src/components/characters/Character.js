@@ -63,8 +63,8 @@ function Character() {
       {characterPhotoUrl ? (
         <div
           role="img"
-          aria-label="character photo"
-          title="character photo"
+          aria-label={`character photo of ${name}`}
+          title={`character photo of ${name}`}
           style={{
             backgroundImage: `url(${characterPhotoUrl})`,
           }}
@@ -76,7 +76,7 @@ function Character() {
         <>
           <img
             src={`https://avatars.dicebear.com/api/bottts/${id}.svg?size=150`}
-            alt=""
+            alt="placeholder character photo of cute robot"
             className="contain-photo"
           />
         </>

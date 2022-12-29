@@ -1,8 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
 
 import AuthContextProvider from "../../testUtils";
 
@@ -60,16 +59,17 @@ test("that the form inputs work and form can be submitted with data", () => {
   const newPass = utils.getByLabelText("enter new password, (optional)");
 
   const button = screen.getByRole("button");
-  act(() => {
+  waitFor(() => {
     fireEvent.change(username, { target: { value: "newuser" } });
     fireEvent.change(email, { target: { value: "email" } });
     fireEvent.change(confirmPass, { target: { value: "password" } });
-  });
-  expect(button.textContent).toBe("Update Profile");
-  expect(username.value).toBe("newuser");
-  expect(email.value).toBe("email");
-  expect(confirmPass.value).toBe("password");
-  expect(newPass.value).toBe("");
 
-  fireEvent.click(button);
+    expect(button.textContent).toBe("Update Profile");
+    expect(username.value).toBe("newuser");
+    expect(email.value).toBe("email");
+    expect(confirmPass.value).toBe("password");
+    expect(newPass.value).toBe("");
+
+    fireEvent.click(button);
+  });
 });

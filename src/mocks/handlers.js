@@ -1,6 +1,6 @@
 import { rest } from "msw";
 export const getAllQuestionairesResponse = rest.get(
-  `${process.env.REACT_APP_BASE_URL}/questionaires`,
+  `http://localhost:8000/api/questionaires`,
   (req, res, ctx) => {
     return res(
       ct.status(200),

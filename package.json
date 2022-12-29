@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --setupFilesAfterEnv ./src/setupTests.js",
+    "test": "react-scripts test --setupFilesAfterEnv ./src/setupTests.js --runInBand",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
