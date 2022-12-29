@@ -4,6 +4,7 @@ import {
   faMasksTheater,
   faPlus,
   faRightFromBracket,
+  faQuoteRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -43,6 +44,9 @@ function Menu({ logout }) {
                 <Nav.Link href="/signup">Sign Up</Nav.Link>
               </>
             )}
+            <Nav.Link href="/credits">
+              Credits <FontAwesomeIcon icon={faQuoteRight} />
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
