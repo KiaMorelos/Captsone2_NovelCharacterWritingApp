@@ -19,7 +19,7 @@ function Home() {
           <div className="lead-area">
             <p>Start building or editing characters</p>
 
-            <Button className="m-3" as={Link} to="/characters">
+            <Button className="m-5" as={Link} to="/characters">
               <FontAwesomeIcon icon={faMasksTheater} /> My Characters
             </Button>
             <Button as={Link} to="/new-character">

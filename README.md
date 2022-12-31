@@ -1,13 +1,44 @@
-# APIs
+# WritSandbox Frontend
+
+## Description
+
+A tool for writers. Ditch the pen/paper - build out your fictional characters' descriptions, personalities, and histories for your next novel in one convenient place.
+
+With WritSandbox you can get to know your characters with 4 different character worksheets and 138 available questions to 'ask' your characters before you start writing.
+
+## Features
+
+- Create characters and attach interview questions and answers to their profile
+- Name generation for those who don't know what to name a character yet upon creation of the character or later on. Users can choose to have random name generated that is one of the following: traditionally male, female, or gender neutral names, or to be surprised with a completely random name.
+- Questionaire / Question Search, sort by question category or questionaire
+- Smooth Creating and Editing of characters and answers, no leaving the page to edit or add questions/answers to a characters profile.
+- Easy deletion of characters and answers
+- Ability to update contact details, username, and password
+
+## APIs
 
 - For character name generation: https://api-ninjas.com/api/babynames in conjuction with Falso for rounded out name generation: https://ngneat.github.io/falso/docs/getting-started
 - Homemade Character Questionaire API (completed and deployed, [see separate repo for full documentation](https://github.com/KiaMorelos/Backend-NovelCharacterWritingApp)) which contains questionaire data from the following resources: [Proust](https://thewritepractice.com/proust-questionnaire/), [Bernard Pivot, and James Lipton questionaires](https://www.deschuteslibrary.org/files/uploads/Bernard%20Pivot%20and%20James%20Lipton%20Questionnaires.pdf), as well as a character analysis sheet from a site called [MousePawMedia](https://mousepawmedia.com/downloads/writing/CharacterAnalysis.pdf).
 
-# Schema
+## Techonologies
+
+React, Node/Express backend with Sequelize, POSTGRES, React-Boostrap 5.2 with FontAwesome for icons, Axios, and JSON Web Tokens
+
+## User Flow
+
+- Login or Signup
+- Create a character, or multiple characters without ever leaving the create character form.
+- Search Questionaires / Questions
+- Add Questions / Answers without having to leave the search area, or choose to go back to the character being worked on when done to review the profile
+- Edit or Delete answers without ever leaving the character page
+- Edit the character's name or photo
+- Delete the character from their page, be redirected to general list of characters
+
+## Schema
 
 ![jpg of schema](public/diagrams/CharacterSchema.jpg)
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -25,7 +56,7 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
+Launches the test runner in the interactive watch mode. Tests for components are contained in the component folder they belong to.
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
