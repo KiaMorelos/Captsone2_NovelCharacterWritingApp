@@ -7,7 +7,11 @@ import "./CharacterList.css";
 
 function CharacterListItem({ id, name, characterPhotoUrl, deleteCharacter }) {
   return (
-    <Card style={{ width: "18rem", margin: "5%" }} bg="dark" key={id}>
+    <Card
+      style={{ width: "18rem", height: "28rem", margin: "5%" }}
+      bg="dark"
+      key={id}
+    >
       {!characterPhotoUrl ? (
         <div className="m-1">
           <small>

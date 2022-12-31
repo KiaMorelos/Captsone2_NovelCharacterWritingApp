@@ -89,7 +89,7 @@ function CharacterForm({
   };
 
   return (
-    <div className="character-form">
+    <div className="character-form container">
       {whichAction === "new" ? (
         <h1>Create New Character </h1>
       ) : (

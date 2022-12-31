@@ -4,7 +4,7 @@ import "./Credits.css";
 //prettier-ignore
 function Credits() {
   return (
-    <div className="m-auto p-5">
+    <div className="m-auto p-5 container">
       <h1 className="display-1 text-center">
         Credits
         <FontAwesomeIcon icon={faQuoteRight} />

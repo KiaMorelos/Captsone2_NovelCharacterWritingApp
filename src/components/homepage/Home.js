@@ -33,15 +33,15 @@ function Home() {
               descriptions, personalities, and histories for your next novel in
               one convenient place.
             </p>
-            <p>
+            <p className="mt-4">
               With WritSandbox you can get to know your characters with 4
               different character worksheets and 138 available questions to
               'ask' your characters before you start writing.
             </p>
 
-            <p className="fw-bold"> Login or sign up to get started</p>
+            <p className="fw-bold mt-5"> Login or sign up to get started</p>
 
-            <Button className="m-3 login" as={Link} to="/login">
+            <Button className="m-5 login" as={Link} to="/login">
               Login
             </Button>
             <Button as={Link} to="/signup">

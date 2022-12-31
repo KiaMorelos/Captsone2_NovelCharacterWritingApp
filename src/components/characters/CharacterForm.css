@@ -19,6 +19,7 @@ p {
     text-align: left;
     line-height: 1.5em;
     width: 90%;
+    margin: auto;
 }
 
 form {
