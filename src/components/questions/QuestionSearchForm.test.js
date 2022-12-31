@@ -1,10 +1,4 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
-} from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import { MemoryRouter } from "react-router-dom";
 import AuthContextProvider from "../../testUtils";
@@ -21,7 +15,7 @@ describe("Question Search Tests", () => {
     );
   });
 
-  test("component has content", () => {
+  test("component has content, and has questionaire and question data when asked", () => {
     WritingAPI.mockImplementationOnce(() => {
       return {
         request: () => {
@@ -37,6 +31,28 @@ describe("Question Search Tests", () => {
         },
       };
     });
+    WritingAPI.mockImplementationOnce(() => {
+      return {
+        request: () => {
+          return {
+            questions: [
+              {
+                id: 1,
+                questionaireId: 1,
+                question: "What is your idea of perfect happiness?",
+                questionCategory: "psychological information",
+              },
+              {
+                id: 2,
+                questionaireId: 1,
+                question: "What is your greatest fear?",
+                questionCategory: "psychological information",
+              },
+            ],
+          };
+        },
+      };
+    });
     const utils = render(
       <AuthContextProvider>
         <MemoryRouter>
@@ -46,9 +62,12 @@ describe("Question Search Tests", () => {
     );
     waitFor(() => {
       expect(
-        utils.queryByText("Search Questionaires and Questions")
+        utils.getAllByText("Search Questionaires and Questions")
       ).toBeInTheDocument();
       expect(utils.getByText("Marcel Proust")).toBeInTheDocument();
+      expect(
+        utils.getByText("What is your greatest fear?")
+      ).toBeInTheDocument();
     });
   });
 });

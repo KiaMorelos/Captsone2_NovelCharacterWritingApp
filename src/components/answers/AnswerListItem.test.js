@@ -14,3 +14,23 @@ test("renders without crashing", () => {
     </AuthContextProvider>
   );
 });
+
+test("there is content", () => {
+  const utils = render(
+    <AuthContextProvider>
+      <MemoryRouter>
+        <AnswerListItem
+          id={1}
+          toQuestion={"favorite song?"}
+          answer={"smells like teen spirit"}
+          questionCategory={"brief history"}
+          questionaireName={"Mulaney"}
+        />
+      </MemoryRouter>
+    </AuthContextProvider>
+  );
+  expect(utils.getByText("smells like teen spirit")).toBeInTheDocument();
+  expect(utils.getByText("favorite song?")).toBeInTheDocument();
+  expect(utils.getByText("Delete answer")).toBeInTheDocument();
+  expect(utils.getByText("Edit answer")).toBeInTheDocument();
+});

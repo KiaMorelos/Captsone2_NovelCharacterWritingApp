@@ -14,3 +14,25 @@ test("renders without crashing", () => {
     </AuthContextProvider>
   );
 });
+
+test("component has content when creating characters", () => {
+  const utils = render(
+    <AuthContextProvider>
+      <MemoryRouter>
+        <CharacterForm whichAction={"new"} />
+      </MemoryRouter>
+    </AuthContextProvider>
+  );
+  expect(utils.getByText("Create New Character")).toBeInTheDocument();
+});
+
+test("component has correct content when editing characters", () => {
+  const utils = render(
+    <AuthContextProvider>
+      <MemoryRouter>
+        <CharacterForm whichAction={"edit"} />
+      </MemoryRouter>
+    </AuthContextProvider>
+  );
+  expect(utils.getByText("Save Edit")).toBeInTheDocument();
+});

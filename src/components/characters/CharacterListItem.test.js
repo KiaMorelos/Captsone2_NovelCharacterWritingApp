@@ -14,3 +14,14 @@ test("renders without crashing", () => {
     </AuthContextProvider>
   );
 });
+
+test("component has content", () => {
+  const utils = render(
+    <AuthContextProvider>
+      <MemoryRouter>
+        <CharacterListItem id={1} name="Deadshot" characterPhotoUrl={""} />
+      </MemoryRouter>
+    </AuthContextProvider>
+  );
+  expect(utils.getByText("Deadshot")).toBeInTheDocument();
+});
