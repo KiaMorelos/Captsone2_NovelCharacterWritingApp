@@ -1,11 +1,27 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 
 import { MemoryRouter } from "react-router-dom";
 import AuthContextProvider from "../../testUtils";
 import QuestionSearchForm from "./QuestionSearchForm";
-import { mswServer } from "../../mocks/server";
-import { getAllQuestionairesResponse } from "../../mocks/handlers";
+import { WritingAPI } from "../../api/writingApi";
+import { act } from "react-dom/test-utils";
+jest.mock("../../api/writingApi");
+// jest.mock(axios, () => {
+//   return {
+//     create: jest.fn(() => axios),
+//     get: jest.fn(() => Promise.resolve()),
+//   };
+// });
+
+// beforeAll(() => {
+//   axios.create.mockReturnThis();
+// });
 
 describe("Question Search Tests", () => {
   test("renders without crashing", () => {
@@ -17,6 +33,32 @@ describe("Question Search Tests", () => {
   });
 
   test("component has content", () => {
+    // WritingAPI.get.mockResolvedValueOnce({
+    //   data: {
+    //     questionaires: [
+    //       {
+    //         id: 1,
+    //         name: "Marcel Proust",
+    //         questionaireType: "character analysis",
+    //       },
+    //     ],
+    //   },
+    // });
+    WritingAPI.mockImplementationOnce(() => {
+      return {
+        request: () => {
+          return {
+            questionaires: [
+              {
+                id: 1,
+                name: "Marcel Proust",
+                questionaireType: "character analysis",
+              },
+            ],
+          };
+        },
+      };
+    });
     const utils = render(
       <AuthContextProvider>
         <MemoryRouter>
@@ -24,8 +66,11 @@ describe("Question Search Tests", () => {
         </MemoryRouter>
       </AuthContextProvider>
     );
-    expect(
-      utils.queryByText("Search Questionaires and Questions")
-    ).toBeInTheDocument();
+    waitFor(() => {
+      expect(
+        utils.queryByText("Search Questionaires and Questions")
+      ).toBeInTheDocument();
+      expect(utils.getByText("Marcel Proust")).toBeInTheDocument();
+    });
   });
 });
