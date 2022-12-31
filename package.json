@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "jest-mock-axios": "^4.7.0-beta2"
+    "jest-mock-axios": "^4.7.0-beta2",
+    "react-inject-env": "^2.1.0"
   }
 }

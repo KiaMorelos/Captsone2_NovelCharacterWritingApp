@@ -1,8 +1,9 @@
 import axios from "axios";
 import { randLastName } from "@ngneat/falso";
+import { env } from "./env";
 
 const API_BASE_URL = "https://api.api-ninjas.com/v1/";
-const BABY_NAME_API_KEY = process.env.REACT_APP_BABY_NAME_API_KEY;
+const BABY_NAME_API_KEY = env.REACT_APP_BABY_NAME_API_KEY;
 
 const API_CLIENT = axios.create({
   baseURL: API_BASE_URL,
