@@ -70,6 +70,7 @@ function AnswerListItem({
                 setEditingAnswer={setEditingAnswer}
                 setUpdatedAnswer={setUpdatedAnswer}
                 updatedAnswer={updatedAnswer}
+                ans={answer}
               />
             ) : null}
           </Modal.Body>

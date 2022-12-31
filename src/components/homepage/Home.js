@@ -11,7 +11,7 @@ function Home() {
   return (
     <div className="homepage">
       <div className="welcome-content">
-        <h1 className="display-2 pad-welcome">
+        <h1 className="display-2 pad-welcome fw-bold">
           Welcome to WritSandbox
           {activeUser ? `, ${activeUser.username}` : null}
         </h1>
@@ -29,10 +29,17 @@ function Home() {
         ) : (
           <div className="lead-area">
             <p>
-              Flesh out the characters of your next novel or RPG game. 4
-              different worksheets and 138 available questions to choose from.
+              Ditch the pen/paper - build out your fictional characters'
+              descriptions, personalities, and histories for your next novel in
+              one convenient place.
             </p>
-            <p> Login or sign up to get started</p>
+            <p>
+              With WritSandbox you can get to know your characters with 4
+              different character worksheets and 138 available questions to
+              'ask' your characters before you start writing.
+            </p>
+
+            <p className="fw-bold"> Login or sign up to get started</p>
 
             <Button className="m-3 login" as={Link} to="/login">
               Login

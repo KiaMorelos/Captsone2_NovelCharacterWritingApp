@@ -1,6 +1,6 @@
 .homepage {
     background-image: url("../../../public/kelly-sikkema-tk9RQCq5eQo-unsplash.jpg");
-    height: 100vh;
+    height: 100%;
     background-size: cover;
     background-position: left;
     background-repeat: no-repeat;
@@ -14,7 +14,7 @@
     background-color: #1c1f2e;
     background: rgba(28,
             31,
-            46, 0.5);
+            46, 0.8);
 }
 
 .lead-area {

@@ -1,11 +1,9 @@
 # APIs
 
 - For character name generation: https://api-ninjas.com/api/babynames in conjuction with Falso for rounded out name generation: https://ngneat.github.io/falso/docs/getting-started
-- Homemade Character Questionaire API (completed and deployed, [see separate repo](https://github.com/KiaMorelos/Backend-NovelCharacterWritingApp)) which will contain questionaire data from the following resources: [Proust](https://thewritepractice.com/proust-questionnaire/), [Bernard Pivot, and James Lipton questionaires](https://www.deschuteslibrary.org/files/uploads/Bernard%20Pivot%20and%20James%20Lipton%20Questionnaires.pdf), as well as a character analysis sheet from a site called [MousePawMedia](https://mousepawmedia.com/downloads/writing/CharacterAnalysis.pdf).
+- Homemade Character Questionaire API (completed and deployed, [see separate repo for full documentation](https://github.com/KiaMorelos/Backend-NovelCharacterWritingApp)) which contains questionaire data from the following resources: [Proust](https://thewritepractice.com/proust-questionnaire/), [Bernard Pivot, and James Lipton questionaires](https://www.deschuteslibrary.org/files/uploads/Bernard%20Pivot%20and%20James%20Lipton%20Questionnaires.pdf), as well as a character analysis sheet from a site called [MousePawMedia](https://mousepawmedia.com/downloads/writing/CharacterAnalysis.pdf).
 
 # Schema
-
-More may be added to this schema later - see proposal - for now I am starting with the Characters / Questionaires side of the app.
 
 ![jpg of schema](public/diagrams/CharacterSchema.jpg)
 

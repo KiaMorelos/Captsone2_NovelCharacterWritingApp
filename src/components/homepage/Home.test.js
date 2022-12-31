@@ -23,7 +23,7 @@ test("contains content and signup/login buttons when logged out", () => {
   );
   const welcomeHeader = screen.getByText("Welcome to WritSandbox");
   const leadCopy = screen.queryByText(
-    "Flesh out the characters of your next novel or RPG game."
+    "Ditch the pen/paper - build out your fictional characters"
   );
   const buttons = screen.getAllByRole("button");
   expect(buttons[0].textContent).toBe("Login");

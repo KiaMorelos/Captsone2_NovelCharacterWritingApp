@@ -114,6 +114,7 @@ function Character() {
               characterId={id}
               patchCharacter={patchCharacter}
               editStatus={setEditingChar}
+              prevUrl={characterPhotoUrl}
             />
           ) : null}
         </Modal.Body>
